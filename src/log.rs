@@ -9,6 +9,7 @@ pub struct LogSettings {
   pub level_keys: Vec<String>,
   pub additional_values: Vec<String>,
   pub dump_all: bool,
+  pub inspect: bool,
 }
 
 impl LogSettings {
@@ -21,6 +22,7 @@ impl LogSettings {
       level_keys: vec!["level".to_string(), "severity".to_string()],
       additional_values: vec![],
       dump_all: false,
+      inspect: false,
     }
   }
 

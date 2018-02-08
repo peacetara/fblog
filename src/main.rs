@@ -23,6 +23,7 @@ extern crate regex;
 
 mod log;
 mod filter;
+mod inspect;
 
 fn main() {
   let app = app();
@@ -46,6 +47,8 @@ fn main() {
   }
 
   log_settings.dump_all = matches.is_present("dump-all");
+  log_settings.inspect = matches.is_present("inspect");
+
   let implicit_return = !matches.is_present("no-implicit-filter-return-statement");
   let maybe_filter = matches.value_of("filter");
 
@@ -114,6 +117,12 @@ fn app<'a>() -> App<'a, 'a> {
            .multiple(false)
            .takes_value(false)
            .help("dumps all values"))
+    .arg(Arg::with_name("inspect")
+           .long("inspect")
+           .short("i")
+           .multiple(false)
+           .takes_value(false)
+           .help("only prints json keys not encountered before"))
     .arg(Arg::with_name("filter")
            .long("filter")
            .short("f")
